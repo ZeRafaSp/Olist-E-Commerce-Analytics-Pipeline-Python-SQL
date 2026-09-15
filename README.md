@@ -47,6 +47,27 @@ Durante a etapa de **Data Wrangling** com Python, foram identificadas e resolvid
 
 ---
 
+### 📊 Resultados & Insights de Negócio (SQL Key Metrics)
+
+Abaixo estão os principais achados extraídos após a modelagem e consulta no banco relacional:
+
+* **Visão Geral da Operação:**
+  * **Volume Total de Pedidos:** ~99.441 pedidos consolidados[cite: 5].
+  * **Faturamento Total:** R$ 16,01 milhões[cite: 5].
+  * **Ticket Médio Geral:** R$ 160,99 por pedido[cite: 5].
+  * **Clientes Únicos:** 96.096 compradores[cite: 5].
+
+* **Logística e Satisfação (SLAs de Entrega):**
+  * **Média Global de Tempo de Entrega:** ~12,5 dias entre a compra e o recebimento pelo cliente.
+  * **Gargalo por Estado:** Estados do Norte e Nordeste apresentaram as maiores taxas de atraso relativo, enquanto o Sudeste concentrou o menor prazo médio[cite: 12].
+  * **Impacto nas Avaliações:** Pedidos entregues com atraso apresentaram uma taxa de avaliações negativas (notas 1 e 2) **substancialmente maior** do que pedidos entregues no prazo, evidenciando o impacto direto da logística no NPS[cite: 12].
+
+* **Comportamento do Consumidor & Pagamentos:**
+  * **Opções de Pagamento:** Cartão de crédito representou mais de 75% do volume de pagamentos, seguido por Boleto[cite: 20].
+  * **Recorrência:** Apenas ~3% da base de clientes realizou mais de 1 compra no período, indicando alta dependência de novos clientes (Efeito One-Time Buyer)[cite: 14, 28].
+  * 
+---
+
 ### 📂 Estrutura do Repositório
 ```text
 📁 Olist-Ecommerce-Pipeline/
