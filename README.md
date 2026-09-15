@@ -17,14 +17,17 @@ O objetivo do projeto é estruturar uma pipeline confiável para ingestão, sani
 ### ⚙️ Arquitetura do Pipeline de Dados
 
 [Dados Brutos / CSVs]
+
 │
 ▼
 
 [01. Python (Pandas & Unicodedata)] ──► Sanitização, Remoção de Nulos e Ajuste UTF-8
+
 │
 ▼
 
 [02. Banco de Dados Relacional / SQL] ──► Agregações, KPIs Comerciais e Modelagem
+
 │
 ▼
 
