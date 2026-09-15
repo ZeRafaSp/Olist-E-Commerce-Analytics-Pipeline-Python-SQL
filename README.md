@@ -30,7 +30,7 @@ O objetivo do projeto é estruturar uma pipeline confiável para ingestão, sani
 
 ---
 
-### 📊 **Principais Insights e Métricas de Negócio (SQL)**
+### 📊 Principais Insights e Métricas de Negócio (SQL)
 As consultas SQL desenvolvidas no projeto permitem extrair indicadores fundamentais para a operação do e-commerce:
 
 Visão Geral da Operação: Cálculo de volume total de pedidos, quantidade de clientes únicos, faturamento global e ticket médio por pedido. 
@@ -43,7 +43,7 @@ Meios de Pagamento: Distribuição do volume financeiro e quantidade de transaç
 
 ---
 
-### 🗂️ **Modelagem Relacional (Modelo ER)**
+### 🗂️ Modelagem Relacional (Modelo ER)
 A integridade referencial do banco de dados foi construída e validada através de scripts DDL com definição de Chaves Primárias (PRIMARY KEY) e Chaves Estrangeiras (FOREIGN KEY):  
 
 Tabelas de Dimensão e Fato: Clientes, produtos e vendedores funcionam como dimensões. A tabela de pedidos (olist_orders_dataset) atua no centro, conectada aos itens vendidos (olist_order_items_dataset), que por sua vez ligam-se aos produtos e aos vendedores parceiros.  
