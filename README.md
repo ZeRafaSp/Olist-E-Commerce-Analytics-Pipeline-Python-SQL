@@ -168,20 +168,21 @@ WITH vendas AS (
 )
 SELECT
     ...
-FROM vendas;```
+FROM vendas;
+```
 
 Essa abordagem facilita a leitura, manutenção e organização das consultas analíticas.
 
 Agregações
 
 Foram utilizadas funções como:
-
+```
 COUNT()
 SUM()
 AVG()
 MIN()
 MAX()
-
+```
 para geração dos principais indicadores do projeto.
 
 **JOINs**
