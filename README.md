@@ -30,23 +30,20 @@ O objetivo do projeto é estruturar uma pipeline confiável para ingestão, sani
 
 ---
 
-### 📊 Principais Insights e Métricas de Negócio (SQL)
+### 📊 **Principais Insights e Métricas de Negócio (SQL)**
 As consultas SQL desenvolvidas no projeto permitem extrair indicadores fundamentais para a operação do e-commerce:
 
-Visão Geral da Operação: Cálculo de volume total de pedidos, quantidade de clientes únicos, faturamento global e ticket médio por pedido.  
-TXT
+Visão Geral da Operação: Cálculo de volume total de pedidos, quantidade de clientes únicos, faturamento global e ticket médio por pedido. 
 
 Logística e Prazos (SLAs): Análise do tempo médio de entrega (em dias), diferença de dias entre a data estimada e a data real de entrega, além do mapeamento do percentual de pedidos atrasados segmentados por Estado.  
-TXT
 
 Comportamento e Retenção: Avaliação da taxa de retenção mapeando clientes recorrentes (compras > 1) em contraste com clientes de compra única, revelando o percentual exato de recorrência da base.  
-TXT
 
 Meios de Pagamento: Distribuição do volume financeiro e quantidade de transações divididas por método de pagamento e número de parcelas escolhidas pelos consumidores.  
 
 ---
 
-### 🗂️ Modelagem Relacional (Modelo ER)
+### 🗂️ **Modelagem Relacional (Modelo ER)**
 A integridade referencial do banco de dados foi construída e validada através de scripts DDL com definição de Chaves Primárias (PRIMARY KEY) e Chaves Estrangeiras (FOREIGN KEY):  
 
 Tabelas de Dimensão e Fato: Clientes, produtos e vendedores funcionam como dimensões. A tabela de pedidos (olist_orders_dataset) atua no centro, conectada aos itens vendidos (olist_order_items_dataset), que por sua vez ligam-se aos produtos e aos vendedores parceiros.  
@@ -94,13 +91,12 @@ Plaintext
 
 ### 🚧 Roadmap de Desenvolvimento
 [x] Fase 1 (Python): Tratamento de dados brutos, caracteres especiais e validação estrutural de arquivos CSV.  
-HTML
+
 
 [x] Fase 2 (SQL): Criação das restrições relacionais, limpeza secundária e geração de consultas complexas de KPIs.  
-HTML
+
 
 [ ] Fase 3 (Power BI): Construção do Dashboard Interativo e Storytelling visual de E-Commerce (Em andamento).  
-HTML
 
 ---
 
