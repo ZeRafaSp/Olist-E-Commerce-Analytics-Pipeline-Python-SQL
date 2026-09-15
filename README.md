@@ -8,8 +8,8 @@ O objetivo do projeto é estruturar uma pipeline confiável para ingestão, sani
 ---
 
 ### 🛠️ Tecnologias e Ferramentas Utilizadas
-* **Python (Pandas):** Limpeza de dados, tratamento de aspas desbalanceadas e exportação otimizada[cite: 1, 5, 28].
-* **SQL (PostgreSQL):** Modelagem relacional (DDL), junções (`JOINs`), restrições e agregações estratégicas[cite: 1, 13, 15].
+* **Python (Pandas & Unicodedata):** Limpeza pesada de dados, correção de enquadramento de aspas, caracteres de controle Unicode e exportação otimizada.
+* **SQL (Relational Queries):** Modelagem relacional, junções relacionais (`JOINs`), window functions e agregações estratégicas.
 * **Git / GitHub:** Controle de versão e documentação técnica.
 
 ---
