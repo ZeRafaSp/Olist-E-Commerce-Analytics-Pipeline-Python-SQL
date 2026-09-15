@@ -8,94 +8,109 @@ O objetivo do projeto é estruturar uma pipeline confiável para ingestão, sani
 ---
 
 ### 🛠️ Tecnologias e Ferramentas Utilizadas
-* **Python (Pandas & Unicodedata):** Limpeza pesada de dados, correção de enquadramento de aspas, caracteres de controle Unicode e exportação otimizada.
-* **SQL (Relational Queries):** Modelagem relacional, junções relacionais (`JOINs`), window functions e agregações estratégicas.
+* **Python (Pandas):** Limpeza de dados, tratamento de aspas desbalanceadas e exportação otimizada[cite: 1, 5, 28].
+* **SQL (PostgreSQL):** Modelagem relacional (DDL), junções (`JOINs`), restrições e agregações estratégicas[cite: 1, 13, 15].
 * **Git / GitHub:** Controle de versão e documentação técnica.
 
 ---
 
 ### ⚙️ Arquitetura do Pipeline de Dados
 
-[Dados Brutos / CSVs]
-
-│
-
-▼
-
-[01. Python (Pandas & Unicodedata)] ──► Sanitização, Remoção de Nulos e Ajuste UTF-8
-
-│
-
-▼
-
-[02. Banco de Dados Relacional / SQL] ──► Agregações, KPIs Comerciais e Modelagem
-
-│
-
-▼
-
-[03. Power BI] (Em Desenvolvimento / Roadmap) ──► Visualização Executiva de Dados
+```text
+[Dados Brutos / CSVs] 
+       │
+       ▼
+[01. Python (Pandas)] ──► Sanitização de aspas internas e Ajuste de codificação
+       │
+       ▼
+[02. Banco Relacional SQL] ──► Agregações, KPIs Comerciais e Modelagem
+       │
+       ▼
+[03. Power BI] (Roadmap) ──► Visualização Executiva de Dados
 
 ---
 
-### 🎯 Desafios Técnicos Solucionados com Python
+### 📊 Principais Insights e Métricas de Negócio (SQL)
+As consultas SQL desenvolvidas no projeto permitem extrair indicadores fundamentais para a operação do e-commerce:
 
-Durante a etapa de **Data Wrangling** com Python, foram identificadas e resolvidas diversas inconsistências comuns em bases legadas reais:
-* **Sanitização de Strings e Aspas Internas:** Correção de quebras de estrutura em arquivos CSV causadas por aspas soltas dentro dos textos de avaliações dos clientes.
-* **Tratamento de Caracteres não-ASCII:** Identificação e substituição de caracteres de controle invisíveis usando a biblioteca `unicodedata`.
-* **Integridade de Exportação:** Configuração de delimitadores e parâmetros de citação (`quoting`) para assegurar leitura perfeita em SGBDs e ferramentas de BI.
+Visão Geral da Operação: Cálculo de volume total de pedidos, quantidade de clientes únicos, faturamento global e ticket médio por pedido.  
+TXT
+
+Logística e Prazos (SLAs): Análise do tempo médio de entrega (em dias), diferença de dias entre a data estimada e a data real de entrega, além do mapeamento do percentual de pedidos atrasados segmentados por Estado.  
+TXT
+
+Comportamento e Retenção: Avaliação da taxa de retenção mapeando clientes recorrentes (compras > 1) em contraste com clientes de compra única, revelando o percentual exato de recorrência da base.  
+TXT
+
+Meios de Pagamento: Distribuição do volume financeiro e quantidade de transações divididas por método de pagamento e número de parcelas escolhidas pelos consumidores.  
 
 ---
 
-### 📊 Resultados & Insights de Negócio (SQL Key Metrics)
+### 🗂️ Modelagem Relacional (Modelo ER)
+A integridade referencial do banco de dados foi construída e validada através de scripts DDL com definição de Chaves Primárias (PRIMARY KEY) e Chaves Estrangeiras (FOREIGN KEY):  
 
-Abaixo estão os principais achados extraídos após a modelagem e consulta no banco relacional:
+Tabelas de Dimensão e Fato: Clientes, produtos e vendedores funcionam como dimensões. A tabela de pedidos (olist_orders_dataset) atua no centro, conectada aos itens vendidos (olist_order_items_dataset), que por sua vez ligam-se aos produtos e aos vendedores parceiros.  
 
-* **Visão Geral da Operação:**
-  * **Volume Total de Pedidos:** ~99.441 pedidos consolidados[cite: 5].
-  * **Faturamento Total:** R$ 16,01 milhões[cite: 5].
-  * **Ticket Médio Geral:** R$ 160,99 por pedido[cite: 5].
-  * **Clientes Únicos:** 96.096 compradores[cite: 5].
 
-* **Logística e Satisfação (SLAs de Entrega):**
-  * **Média Global de Tempo de Entrega:** ~12,5 dias entre a compra e o recebimento pelo cliente.
-  * **Gargalo por Estado:** Estados do Norte e Nordeste apresentaram as maiores taxas de atraso relativo, enquanto o Sudeste concentrou o menor prazo médio[cite: 12].
-  * **Impacto nas Avaliações:** Pedidos entregues com atraso apresentaram uma taxa de avaliações negativas (notas 1 e 2) **substancialmente maior** do que pedidos entregues no prazo, evidenciando o impacto direto da logística no NPS[cite: 12].
+Outras conexões importantes incluem pagamentos (olist_order_payments_dataset) e avaliações (olist_order_reviews_dataset) ligados diretamente ao ID do pedido, além da tradução de categorias amarrada à tabela de produtos.  
 
-* **Comportamento do Consumidor & Pagamentos:**
-  * **Opções de Pagamento:** Cartão de crédito representou mais de 75% do volume de pagamentos, seguido por Boleto[cite: 20].
-  * **Recorrência:** Apenas ~3% da base de clientes realizou mais de 1 compra no período, indicando alta dependência de novos clientes (Efeito One-Time Buyer)[cite: 14, 28].
-  * 
+---
+
+### 💡 Destaques de Código e Técnicas Aplicadas
+1. Tratamento Avançado de Strings em Python (Pandas)
+Para resolver problemas de importação (quebra de colunas) gerados pela base bruta, o script em Python foi projetado para:
+
+Varrer o arquivo e identificar linhas problemáticas verificando se a quantidade de aspas (count('"')) é ímpar, o que desbalanceia a estrutura do CSV.  
+
+Remover todas as aspas textuais internas presentes nos comentários de avaliações dos clientes (str.replace('"', '', regex=False)), garantindo uma exportação perfeitamente formatada.  
+
+2. Agregações Complexas e Cláusula FILTER em SQL
+Para otimizar o desempenho das extrações, foram utilizadas práticas avançadas:
+
+Estruturação de consultas utilizando CTEs (WITH clause) para isolar etapas de cálculo, como a contagem de clientes e pedidos antes das divisões finais.  
+
+Uso da cláusula FILTER (WHERE ...) combinada com agregações (COUNT) para calcular rapidamente condições específicas na mesma linha (ex: filtrar apenas atrasos ou apenas compras > 1) sem a necessidade de múltiplos e custosos CASE WHEN.  
+
+Conversão temporal utilizando EXTRACT(EPOCH FROM ...)/86400 para extrair a diferença exata em dias entre as datas de aprovação, envio e entrega real do produto aos clientes.  
+
 ---
 
 ### 📂 Estrutura do Repositório
-```text
+Plaintext
+
+
 📁 Olist-Ecommerce-Pipeline/
 │
-├── 📁 python_etl/             # Scripts Python para limpeza e sanitização
+├── 📁 python_etl/                # Scripts Python para limpeza e sanitização
 │   └── sanitizacao_reviews.py
 │
-├── 📁 scripts/            # Scripts SQL para consulta e KPIs de negócio
+├── 📁 scripts/                   # Scripts SQL para criação de DDL, KPIs e métricas
 │   ├── 01_schema_database.sql
 │   └── 02_analises_kpis.sql
 │
 └── 📄 README.md                  # Documentação do projeto
 
+---
+
+### 🚧 Roadmap de Desenvolvimento
+[x] Fase 1 (Python): Tratamento de dados brutos, caracteres especiais e validação estrutural de arquivos CSV.  
+HTML
+
+[x] Fase 2 (SQL): Criação das restrições relacionais, limpeza secundária e geração de consultas complexas de KPIs.  
+HTML
+
+[ ] Fase 3 (Power BI): Construção do Dashboard Interativo e Storytelling visual de E-Commerce (Em andamento).  
+HTML
 
 ---
 
-🚧 Roadmap de Desenvolvimento
-[x] Fase 1 (Python): Tratamento de dados brutos, caracteres especiais e validação de arquivos.
-
-[x] Fase 2 (SQL): Criação das tabelas relacionais, limpeza secundária e geração de consultas de KPIs.
-
-[ ] Fase 3 (Power BI): Construção do Dashboard Interativo e Storytelling com Dados (Em andamento).
-
-👨💻 Autor
+👨‍💻 Autor
 José Rafael Santos Pereira
 
 Desenvolvendo soluções práticas de dados | Power BI | SQL | Python | Business Intelligence
 
+
 LinkedIn: https://www.linkedin.com/in/rafaelsantospereirarsp/
 
 GitHub: https://github.com/ZeRafaSp/
+
