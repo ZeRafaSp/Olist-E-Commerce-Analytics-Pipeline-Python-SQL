@@ -168,7 +168,7 @@ WITH vendas AS (
 )
 SELECT
     ...
-FROM vendas;
+FROM vendas;```
 
 Essa abordagem facilita a leitura, manutenção e organização das consultas analíticas.
 
@@ -306,7 +306,7 @@ Este projeto demonstra conhecimentos práticos em:
 
 **José Rafael Santos Pereira**
 
-**Analista de Dados | Business Intelligence | Data Analytics** | Power BI • SQL • Python • DAX • Data Analytics
+Analista de Dados | Business Intelligence | Data Analytics | Power BI • SQL • Python • DAX • Data Analytics
 
 [LinkedIn](https://www.linkedin.com/) 
 
