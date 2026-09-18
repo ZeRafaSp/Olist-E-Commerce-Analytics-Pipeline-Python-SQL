@@ -197,6 +197,78 @@ A cláusula FILTER (WHERE ...) foi utilizada em agregações para calcular métr
 
 Foram utilizadas funções de janela em análises que exigem comparação entre registros ou períodos, permitindo desenvolver análises temporais e métricas mais avançadas.
 
+---
+
+## ⭐ Avaliações e Satisfação dos Clientes
+
+Foi realizada uma análise das avaliações dos clientes para identificar padrões de satisfação e possíveis relações com diferentes aspectos da operação.
+
+Foram analisados:
+
+* Distribuição das notas;
+* Percentual de avaliações negativas;
+* Avaliações por categoria de produto;
+* Relação entre avaliações e método de pagamento;
+* Relação entre avaliações e prazo de entrega.
+
+### ⭐ Visão Geral das Avaliações
+
+A base analisada possui **99.224 avaliações**, relacionadas a **98.673 pedidos**.
+
+* **Nota média:** 4,09
+* **57,78%** das avaliações receberam nota 5;
+* **14,69%** foram classificadas como negativas (notas 1 e 2).
+
+### 📦 Avaliações por Categoria
+
+As categorias foram comparadas considerando apenas aquelas com pelo menos **500 avaliações**, reduzindo o impacto de categorias com amostras muito pequenas.
+
+Entre os resultados:
+
+* `livros_interesse_geral`: nota média **4,46**
+* `malas_acessorios`: nota média **4,33**
+* `papelaria`: nota média **4,24**
+* `pet_shop`: nota média **4,24**
+* `automotivo`: nota média **4,09**
+
+Também foi calculado o percentual de avaliações negativas para cada categoria.
+
+### 💳 Avaliações por Método de Pagamento
+
+Foi analisada a relação entre o método de pagamento e as avaliações dos pedidos.
+
+| Método      | Pedidos avaliados | Nota média | % negativas |
+| ----------- | ----------------: | ---------: | ----------: |
+| Debit card  |             1.521 |       4,17 |      12,95% |
+| Credit card |            75.910 |       4,09 |      14,66% |
+| Boleto      |            19.636 |       4,09 |      14,38% |
+| Voucher     |             3.829 |       4,02 |      16,14% |
+
+O método `not_defined` foi desconsiderado da comparação por possuir apenas 3 pedidos avaliados.
+
+### 🚚 Avaliações × Prazo de Entrega
+
+Também foi analisada a relação entre o cumprimento do prazo estimado e a avaliação recebida pelo cliente.
+
+| Status da entrega | Pedidos avaliados | Nota média | % negativas |
+| ----------------- | ----------------: | ---------: | ----------: |
+| No prazo          |            88.163 |   **4,29** |   **9,19%** |
+| Atrasado          |             7.661 |   **2,57** |  **53,99%** |
+
+Os pedidos atrasados apresentaram uma proporção de avaliações negativas aproximadamente **5,9 vezes maior** que os pedidos entregues no prazo.
+
+Esse resultado indica uma **forte associação entre atrasos na entrega e avaliações negativas**, embora a análise não permita afirmar uma relação de causalidade isoladamente.
+
+### 🔎 Principais Insights
+
+* A maior parte das avaliações foi positiva, com **57,78% de notas 5**.
+* **14,69%** das avaliações foram negativas.
+* Existem diferenças nas avaliações entre categorias de produtos.
+* Foram observadas diferenças entre os métodos de pagamento, embora as notas médias dos principais métodos sejam relativamente próximas.
+* O maior contraste encontrado ocorreu entre **prazo de entrega e satisfação**, com notas médias de **4,29** para pedidos no prazo e **2,57** para pedidos atrasados.
+
+---
+
 # 📊 5. Power BI
 
 Como etapa de visualização, os resultados das consultas SQL serão utilizados na construção de um dashboard no Power BI.
@@ -228,6 +300,7 @@ O objetivo é transformar os indicadores obtidos por meio do SQL em uma visão v
 | 💳 **Pagamentos** | Métodos de pagamento, parcelas e volume financeiro |
 | 📦 **Produtos** | Categorias, produtos e volume de vendas |
 | 📅 **Temporal** | Evolução das vendas e variação entre períodos |
+| ⭐ **Satisfação** | Avaliações, notas e percentual de avaliações negativas |
 
 ---
 
@@ -268,6 +341,7 @@ O objetivo é transformar os indicadores obtidos por meio do SQL em uma visão v
 - [x] Criação das consultas analíticas
 - [x] Análise de indicadores de negócio
 - [x] Análise temporal das vendas
+- [x] Avaliação de satisfação
 
 ### Fase 3 — Power BI
 - [ ] Conexão do Power BI com os dados
