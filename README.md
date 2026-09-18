@@ -152,8 +152,6 @@ Também foram desenvolvidas consultas para analisar a evolução das vendas ao l
 
 ---
 
----
-
 ## ⭐ Avaliações e Satisfação dos Clientes
 
 Foi realizada uma análise das avaliações dos clientes para identificar padrões de satisfação e possíveis relações com diferentes aspectos da operação.
