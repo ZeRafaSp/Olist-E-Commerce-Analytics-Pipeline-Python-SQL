@@ -152,51 +152,6 @@ Também foram desenvolvidas consultas para analisar a evolução das vendas ao l
 
 ---
 
-# 🧠 4. Técnicas SQL Aplicadas
-
-Durante o desenvolvimento das análises foram utilizadas diferentes técnicas de SQL.
-
-### CTEs — Common Table Expressions
-
-Utilização da cláusula `WITH` para dividir consultas complexas em etapas menores e mais organizadas.
-
-```sql
-WITH vendas AS (
-    SELECT
-        ...
-    FROM ...
-)
-SELECT
-    ...
-FROM vendas;
-```
-
-Essa abordagem facilita a leitura, manutenção e organização das consultas analíticas.
-
-Agregações
-
-Foram utilizadas funções como:
-```
-COUNT()
-SUM()
-AVG()
-MIN()
-MAX()
-```
-para geração dos principais indicadores do projeto.
-
-**JOINs**
-
-Foram utilizados diferentes tipos de JOIN para combinar informações provenientes das diversas tabelas relacionais.
-
-**FILTER**
-
-A cláusula FILTER (WHERE ...) foi utilizada em agregações para calcular métricas condicionais dentro da mesma consulta.
-
-**Funções de Janela**
-
-Foram utilizadas funções de janela em análises que exigem comparação entre registros ou períodos, permitindo desenvolver análises temporais e métricas mais avançadas.
-
 ---
 
 ## ⭐ Avaliações e Satisfação dos Clientes
@@ -266,6 +221,53 @@ Esse resultado indica uma **forte associação entre atrasos na entrega e avalia
 * Existem diferenças nas avaliações entre categorias de produtos.
 * Foram observadas diferenças entre os métodos de pagamento, embora as notas médias dos principais métodos sejam relativamente próximas.
 * O maior contraste encontrado ocorreu entre **prazo de entrega e satisfação**, com notas médias de **4,29** para pedidos no prazo e **2,57** para pedidos atrasados.
+
+---
+
+# 🧠 4. Técnicas SQL Aplicadas
+
+Durante o desenvolvimento das análises foram utilizadas diferentes técnicas de SQL.
+
+### CTEs — Common Table Expressions
+
+Utilização da cláusula `WITH` para dividir consultas complexas em etapas menores e mais organizadas.
+
+```sql
+WITH vendas AS (
+    SELECT
+        ...
+    FROM ...
+)
+SELECT
+    ...
+FROM vendas;
+```
+
+Essa abordagem facilita a leitura, manutenção e organização das consultas analíticas.
+
+Agregações
+
+Foram utilizadas funções como:
+```
+COUNT()
+SUM()
+AVG()
+MIN()
+MAX()
+```
+para geração dos principais indicadores do projeto.
+
+**JOINs**
+
+Foram utilizados diferentes tipos de JOIN para combinar informações provenientes das diversas tabelas relacionais.
+
+**FILTER**
+
+A cláusula FILTER (WHERE ...) foi utilizada em agregações para calcular métricas condicionais dentro da mesma consulta.
+
+**Funções de Janela**
+
+Foram utilizadas funções de janela em análises que exigem comparação entre registros ou períodos, permitindo desenvolver análises temporais e métricas mais avançadas.
 
 ---
 
