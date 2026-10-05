@@ -383,8 +383,7 @@ Este projeto demonstra conhecimentos práticos em:
 
 Analista de Dados | Business Intelligence | Data Analytics | Power BI • SQL • Python • DAX • Data Analytics
 
-[LinkedIn](https://www.linkedin.com/) 
+LinkedIn: https://www.linkedin.com/in/rafaelsantospereirarsp/
 
-[GitHub](https://github.com/ZeRafaSp)
-
+GitHub: https://github.com/ZeRafaSp/
 
